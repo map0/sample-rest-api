@@ -4,12 +4,25 @@
   "description": "A simple rest api covering some common use cases ",
   "main": "index.js",
   "scripts": {
-    "dev": "node ./index.js",
+    "dev": "NODE_ENV=development ./node_modules/.bin/pm2-dev start package.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mihail Petrov",
   "license": "ISC",
+  "apps": [
+    {
+      "name": "restapi",
+      "script": "index.js",
+      "ignore_watch": [
+        "README.md",
+        ".git"
+      ]
+    }
+  ],
   "dependencies": {
     "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "pm2": "^3.4.1"
   }
 }
