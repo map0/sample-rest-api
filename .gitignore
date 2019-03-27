@@ -11,3 +11,4 @@ haters/
 variables.env
 /.env
 *.log
+package-lock.json
