@@ -1,0 +1,13 @@
+npm-debug.log
+node_modules
+.DS_Store
+*.local
+/project.sublime-workspace
+/.idea
+/public/css/style.css.map
+/app/server.pid
+npm-debug.log.*
+haters/
+variables.env
+/.env
+*.log
