@@ -13,11 +13,11 @@ module.exports = (app) => {
   /**
    * User resources
    */
-  const { users } = app.controllers;
+  const { users, auth } = app.controllers;
 
-  router.get('/', catchErrors(users.index));
+  router.get('/', auth.checkToken, catchErrors(users.index));
 
-  router.post('/', catchErrors(users.add));
+  router.post('/', auth.createToken, catchErrors(users.add));
 
   app.express.use(router);
 

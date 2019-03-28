@@ -7,8 +7,15 @@ module.exports = app => {
     },
     async add(req, res) {
       const newUser = new User({ username: req.body.username });
-      newUser.save();
-      res.send('data created')
+      try {
+        await newUser.save();
+        return res.send('data created');
+      } catch (e) {
+        if (e.errmsg.match('duplicate key')) {
+          return res.send('ooops. this record exists')
+        }
+        return res.send('smt went wrong while storing the record')
+      }
     }
   }
 }
