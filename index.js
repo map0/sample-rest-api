@@ -1,14 +1,19 @@
-const express = require('express');
+const express = require('express')();
 const bodyParser = require('body-parser');
 const logger = require('pino')();
 const config = require('./config/config');
 
-const app = express();
+const packageJson = require('./package')
+
+const app = {
+  name: packageJson.name,
+  version: packageJson.version,
+};
 
 require('dotenv').config({ path: 'variables.env' });
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+express.use(bodyParser.json())
+express.use(bodyParser.urlencoded({ extended: true }))
 
 
 /*
@@ -49,15 +54,16 @@ const userSchema = new mongoose.Schema({
 
 const UserModel = mongoose.model('User', userSchema);
 
-app.get('/', (req, res, next) => {
+express.get('/', (req, res, next) => {
   res.send('hello world');
 })
 
-app.post('/', (req, res, next) => {
+express.post('/', (req, res, next) => {
   const newUser = new UserModel({ username: req.body.username });
   newUser.save();
+  res.send('data created')
 })
 
-app.listen(config.port, () => {
+express.listen(config.port, () => {
   logger.info(`Express is running. Please open http://localhost:${config.port}`)
 })
