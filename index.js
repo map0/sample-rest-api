@@ -3,9 +3,10 @@ require('app-module-path').addPath(__dirname);
 const log = require('lib/log')
 const mongoose = require('lib/mongoose')
 const express = require('lib/express');
+const routes = require('routes');
 const config = require('config/config');
 const UserModel = require('models/user');
-const packageJson = require('package')
+const packageJson = require('package');
 
 require('dotenv').config({ path: 'variables.env' });
 
@@ -21,6 +22,8 @@ app.config = config
 app.log = log(app);
 
 app.express = express(app);
+
+app.routes = routes(app);
 
 app.mongoose = mongoose(app)
 

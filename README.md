@@ -7,6 +7,9 @@
 
 #changelog
 
+##v0.0.3
+- add controllers and exceptions
+
 ## v0.0.2
 - add router
 
