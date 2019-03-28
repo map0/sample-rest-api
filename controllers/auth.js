@@ -1,12 +1,13 @@
 const jwt = require('jsonwebtoken');
 
 /* eslint arrow-body-style: 0 */
+/* eslint no-unused-vars: 0 */
 module.exports = app => {
   return {
     async checkToken(req, res, next) {
-      let token = req.headers['x-access-token'] || req.headers['authorization'];
+      let token = req.headers['x-access-token'] || req.headers.authorization;
 
-      if (token && req.headers['authorization']) {
+      if (token && req.headers.authorization) {
         // Remove Bearer from string
         token = token.slice(7, token.length);
       }

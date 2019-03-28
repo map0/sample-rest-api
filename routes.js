@@ -1,5 +1,6 @@
 const express = require('express');
 
+/* eslint arrow-body-style: 0 */
 // const catchErrors = fn => (...args) => fn(...args).catch(args[2]);
 const catchErrors = (fn) => {
   return function (req, res, next) {
