@@ -1,6 +1,6 @@
 {
   "name": "restapi",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "A simple rest api covering some common use cases ",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,7 @@
     "body-parser": "^1.18.3",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.4.20",
     "pino": "^5.12.0"
   },

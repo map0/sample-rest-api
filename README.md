@@ -7,8 +7,28 @@
 
 #changelog
 
+##v0.0.9
+- deploy the BE app
+
+##v0.0.8
+- integrate Passport strategy for jwt. store hashed pass in users db.
+
+##v0.0.7
+- integrate a VAT service to calculate the price, using this public API - https://jsonvat.com/
+
+##v0.0.6
+- create endpoints for Orders and Products. Support list, add/update etc
+
+##v0.0.5
+- create Product and Orders models.
+
+##v0.0.4
+- Implement authentication via jwt. A request should be send with username and password.
+The jwt should be send and validated with each API call. Use mock passwords check
+
 ##v0.0.3
 - add controllers and exceptions
+- add module loader for models and controllers
 
 ## v0.0.2
 - add router
