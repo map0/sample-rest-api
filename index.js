@@ -32,6 +32,8 @@ app.models = loader(app, 'models');
 
 app.express = express(app);
 
+app.services = loader(app, 'services')
+
 app.controllers = loader(app, 'controllers');
 
 app.routes = routes(app);

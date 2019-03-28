@@ -3,6 +3,9 @@ module.exports = app => {
 
   return {
     async list(req, res) {
+      const vat = await app.services.jsonVat.countryVat()
+      console.log(vat, 6666)
+
       const allProducts = await Product.find({})
       res.json({ list: allProducts })
     },
