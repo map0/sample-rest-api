@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const log = require('lib/log')
 const mongoose = require('lib/mongoose')
 const config = require('config/config');
-const packageJson = require('./package')
+const UserModel = require('models/user');
+const packageJson = require('package')
 
 const app = {
   name: packageJson.name,
@@ -25,25 +26,17 @@ express.use(bodyParser.urlencoded({ extended: true }))
 
 app.mongoose = mongoose(app)
 
-/**
- * define a basic mongoDB Model for user
- */
-const userSchema = new app.mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-});
-
-const UserModel = app.mongoose.model('User', userSchema);
+app.models = {
+  user: UserModel(app)
+}
 
 express.get('/', (req, res, next) => {
   res.send('hello world');
 })
 
 express.post('/', (req, res, next) => {
-  const newUser = new UserModel({ username: req.body.username });
+  const User = app.models.user
+  const newUser = new User({ username: req.body.username });
   newUser.save();
   res.send('data created')
 })
