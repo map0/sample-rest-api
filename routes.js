@@ -3,16 +3,14 @@ const express = require('express');
 module.exports = (app) => {
   const router = express.Router();
 
-  router.get('/', (req, res, next) => {
-    res.send('hello world');
-  });
+  /**
+   * User resources
+   */
+  const { users } = app.controllers;
 
-  router.post('/', (req, res, next) => {
-    const User = app.models.user
-    const newUser = new User({ username: req.body.username });
-    newUser.save();
-    res.send('data created')
-  });
+  router.get('/', users.index);
+
+  router.post('/', users.add);
 
   app.express.use(router);
 
