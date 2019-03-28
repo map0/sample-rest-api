@@ -1,5 +1,4 @@
 module.exports = app => {
-
   const exceptions = {
     NotFoundError: class NotFoundError extends Error {},
     // RequestValidationError: class ValidationError extends Error {

@@ -1,5 +1,12 @@
 const express = require('express');
 
+// const catchErrors = fn => (...args) => fn(...args).catch(args[2]);
+const catchErrors = (fn) => {
+  return function (req, res, next) {
+    return fn(req, res, next).catch(next);
+  };
+};
+
 module.exports = (app) => {
   const router = express.Router();
 
@@ -8,9 +15,9 @@ module.exports = (app) => {
    */
   const { users } = app.controllers;
 
-  router.get('/', users.index);
+  router.get('/', catchErrors(users.index));
 
-  router.post('/', users.add);
+  router.post('/', catchErrors(users.add));
 
   app.express.use(router);
 
