@@ -3,6 +3,7 @@ module.exports = app => {
     username: {
       type: String,
       required: true,
+      trim: true,
       unique: true,
     },
   });
