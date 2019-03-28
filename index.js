@@ -3,6 +3,7 @@ require('app-module-path').addPath(__dirname);
 const log = require('lib/log')
 const mongoose = require('lib/mongoose')
 const express = require('lib/express');
+const exceptions = require('exceptions');
 const routes = require('routes');
 const config = require('config/config');
 const UserModel = require('models/user');
@@ -24,6 +25,8 @@ app.log = log(app);
 app.express = express(app);
 
 app.routes = routes(app);
+
+app.exceptions = exceptions(app);
 
 app.mongoose = mongoose(app)
 
