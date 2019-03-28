@@ -1,7 +1,9 @@
+require('app-module-path').addPath(__dirname);
+
 const express = require('express')();
 const bodyParser = require('body-parser');
-const logger = require('pino')();
-const config = require('./config/config');
+const log = require('lib/log')
+const config = require('config/config');
 
 const packageJson = require('./package')
 
@@ -9,6 +11,12 @@ const app = {
   name: packageJson.name,
   version: packageJson.version,
 };
+
+app.root = __dirname;
+
+app.config = config
+
+app.log = log(app);
 
 require('dotenv').config({ path: 'variables.env' });
 
@@ -26,19 +34,19 @@ mongoose.Promise = global.Promise
 mongoose.connect(process.env.DATABASE, { useNewUrlParser: true })
 
 mongoose.connection.on('error', (err) => {
-  logger.error(`ouch -> ${err.message}`)
+  app.log.error(`ouch -> ${err.message}`)
 })
 
 mongoose.connection.on('error', () => {
-  logger.error('connection error with mongodb');
+  app.log.error('connection error with mongodb');
 });
 
 mongoose.connection.on('open', () => {
-  logger.info('connected to mongodb on');
+  app.log.info('connected to mongodb on');
 });
 
 mongoose.connection.on('disconnected', () => {
-  logger.error('Mongoose default connection disconnected');
+  app.log.error('Mongoose default connection disconnected');
 });
 
 /**
@@ -64,6 +72,6 @@ express.post('/', (req, res, next) => {
   res.send('data created')
 })
 
-express.listen(config.port, () => {
-  logger.info(`Express is running. Please open http://localhost:${config.port}`)
+express.listen(app.config.port, () => {
+  app.log.info(`Express is running. Please open http://localhost:${app.config.port}`)
 })
