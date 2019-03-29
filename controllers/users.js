@@ -21,9 +21,8 @@ module.exports = app => {
       })
     },
     async add(req, res) {
-      const newUser = new User({ username: req.body.username });
       try {
-        await newUser.save();
+        await (new User({ username: req.body.username })).save();
         res.status(201);
         return res.json({
           status: 'data created',

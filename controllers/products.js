@@ -19,7 +19,7 @@ module.exports = app => {
       const vat = await app.services.jsonVat.countryVat(req.decoded)
       const allProducts = await Product.list(vat)
       const stringifyPrices = stringifyField(allProducts, 'price')
-      res.satus(200)
+      res.status(200)
       res.json(stringifyPrices)
     },
     async add(req, res) {

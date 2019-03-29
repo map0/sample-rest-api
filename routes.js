@@ -22,7 +22,7 @@ module.exports = (app) => {
   } = app.controllers;
 
   router.get('/', catchErrors(users.index));
-  router.post('/login', auth.createToken, catchErrors(users.add));
+  router.post('/register', auth.createToken, catchErrors(users.add));
 
   router.get('/products', catchErrors(products.list));
   router.post('/products', auth.checkToken, catchErrors(products.add));

@@ -4,10 +4,8 @@ module.exports = app => {
   return {
     async list(req, res) {
       const allOrders = await Order.list()
-      res.satus(200)
-      res.json({
-        list: allOrders
-      })
+      res.status(200)
+      res.json(allOrders)
     },
     async add(req, res) {
       // const newOrder = await Order.create(req.body)
