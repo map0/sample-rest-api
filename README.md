@@ -8,10 +8,13 @@
 #changelog
 
 ##v0.0.9
-- deploy the BE app
+- integrate Passport strategy for jwt. store hashed pass in users db.
+
+##v0.0.9
+- better valdations should be implemented. we use only db validations now
 
 ##v0.0.8
-- integrate Passport strategy for jwt. store hashed pass in users db.
+- deploy the app, may get some feedback
 
 ##v0.0.7
 - integrate a VAT service to calculate the price, using this public API - https://jsonvat.com/
