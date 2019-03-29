@@ -5,9 +5,12 @@
 - The user will store this token on their client-side and send it for every request
 - We will validate this token, and if all is good, pass back information in JSON format
 
-- Try out:
-We have just 1 hardcoded user with the following creadentials:
+# Try out:
+- https://rest-api-sbtech.herokuapp.com/
+
+- Note: We have just 1 hardcoded user with the following creadentials:
 { usernane: 'admin', password: 'password'}
+Should implement pass hashing later on
 
 
 #changelog
