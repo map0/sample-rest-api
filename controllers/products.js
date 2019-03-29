@@ -19,11 +19,15 @@ module.exports = app => {
       const vat = await app.services.jsonVat.countryVat(req.decoded)
       const allProducts = await Product.list(vat)
       const stringifyPrices = stringifyField(allProducts, 'price')
+      res.satus(200)
       res.json(stringifyPrices)
     },
     async add(req, res) {
       await Product.create(req.body)
-      res.sendStatus(201)
+      res.status(201)
+      res.json({
+        message: 'product created. thats the spirit!!'
+      })
     },
     async update(req, res) {
       // for (let prop in req.query) {
@@ -31,7 +35,6 @@ module.exports = app => {
       //     update[prop] = req.query[prop];
       //   }
       // }
-
       await Product.findOneAndUpdate(
         { _id: req.params.id },
         req.query,
@@ -41,10 +44,14 @@ module.exports = app => {
           upsert: true
         }
       )
-      res.send('product updated')
+      res.status(205)
+      res.json({
+        message: 'product updated'
+      })
     },
     async delete(req, res) {
       await Product.deleteOne({ _id: req.params.id })
+      res.status(205)
       res.send('ok. deleted')
     }
   }

@@ -4,11 +4,25 @@ module.exports = app => {
   return {
     async list(req, res) {
       const allOrders = await Order.list()
-      res.json({ list: allOrders })
+      res.satus(200)
+      res.json({
+        list: allOrders
+      })
     },
     async add(req, res) {
-      await Order.create(req.body)
-      res.sendStatus(201)
+      // const newOrder = await Order.create(req.body)
+      // await newOrder.save()
+      const newOrder = await (new Order(req.body)).save()
+      if (newOrder) {
+        res.status(201)
+        return res.json({
+          message: 'order created. way to go!!'
+        });
+      }
+      res.status(400)
+      res.json({
+        message: 'order cannot be created. so sorry!!'
+      })
     },
     async update(req, res) {
       await Order.findOneAndUpdate(
@@ -20,7 +34,10 @@ module.exports = app => {
           upsert: true
         }
       )
-      res.send('order updated')
+      res.status(205)
+      res.json({
+        message: 'order updated'
+      })
     }
   }
 }
