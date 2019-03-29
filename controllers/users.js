@@ -9,7 +9,10 @@ module.exports = app => {
       const newUser = new User({ username: req.body.username });
       try {
         await newUser.save();
-        return res.send('data created');
+        return res.json({
+          status: 'data created',
+          token: res.token
+        });
       } catch (e) {
         if (e.errmsg.match('duplicate key')) {
           return res.send('ooops. this record exists')

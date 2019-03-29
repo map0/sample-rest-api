@@ -4,11 +4,10 @@
  */
 const axios = require('axios');
 
-const countryCode = 'BG';
 
 module.exports = app => {
   return {
-    async countryVat() {
+    async countryVat(countryCode = 'BG') {
       let vat = 1
       await axios.get('https://jsonvat.com')
         .then(response => {

@@ -42,7 +42,10 @@ module.exports = app => {
       }
       if (username === mockedUsername && password === mockedPassword) { // mock db.find
         const token = jwt.sign(
-          { username },
+          {
+            username,
+            countryCode: req.body.countryCode || ''
+          },
           process.env.JWT_SECRET,
           { expiresIn: 86400 } // expires in 24 hours
         );
