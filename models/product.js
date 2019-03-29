@@ -2,17 +2,17 @@ module.exports = app => {
   const productSchema = new app.mongoose.Schema({
     name: {
       type: String,
-      required: true,
+      required: 'a product needs a lovely name',
       trim: true,
     },
     category: {
       type: String,
-      required: true,
+      required: 'a product needs a proper name',
       trim: true,
     },
     price: {
       type: Number,
-      required: true,
+      required: 'a product needs a decent price',
       trim: true,
     }
   });

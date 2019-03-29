@@ -1,18 +1,23 @@
 module.exports = app => {
   const orderSchema = new app.mongoose.Schema({
-    products: [{
-      type: app.mongoose.Schema.Types.ObjectId,
-      ref: 'Products'
-    }],
+    products: {
+      type: [{
+        type: app.mongoose.Schema.Types.ObjectId,
+        ref: 'Products',
+      }],
+      default: undefined,
+      required: 'please supply products. an order needs products'
+    },
     status: {
       type: String,
+      trim: true,
       enum: ['Pending', 'Processing', 'Delivered', 'Cancelled'],
-      default: 'Pending'
+      required: 'please supply status. an order needs to be tracked'
     },
     date: {
       type: Date,
       required: true,
-      default: Date.now
+      default: Date.now,
     }
   });
 
