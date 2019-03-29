@@ -16,5 +16,26 @@ module.exports = app => {
     }
   });
 
+  orderSchema.statics.list = async function list() {
+    return this.aggregate(
+      [
+        {
+          $project:
+          {
+            date:
+            {
+              $dateToString:
+              {
+                format: '%Y-%m-%d', date: '$date'
+              }
+            },
+            products: 1,
+            status: 1
+          }
+        }
+      ]
+    )
+  }
+
   return app.mongoose.model('Order', orderSchema);
 }

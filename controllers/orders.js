@@ -3,7 +3,7 @@ module.exports = app => {
 
   return {
     async list(req, res) {
-      const allOrders = await Order.find({})
+      const allOrders = await Order.list()
       res.json({ list: allOrders })
     },
     async add(req, res) {

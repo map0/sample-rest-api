@@ -11,11 +11,27 @@ module.exports = app => {
       trim: true,
     },
     price: {
-      type: String,
+      type: Number,
       required: true,
       trim: true,
     }
   });
+
+  productSchema.statics.list = async function list(vat) {
+    return this.aggregate(
+      [
+        {
+          $project: {
+            name: 1,
+            category: 1,
+            price: {
+              $multiply: ['$price', vat]
+            }
+          }
+        }
+      ]
+    )
+  }
 
   return app.mongoose.model('Product', productSchema);
 }
