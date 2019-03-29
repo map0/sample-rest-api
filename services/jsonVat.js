@@ -4,7 +4,7 @@
  */
 const axios = require('axios');
 
-
+/* eslint arrow-body-style: 0 */
 module.exports = app => {
   return {
     async countryVat(countryCode = 'BG') {
