@@ -21,17 +21,17 @@ module.exports = (app) => {
     products
   } = app.controllers;
 
-  router.get('/', auth.checkToken, catchErrors(users.index));
-  router.post('/', auth.createToken, catchErrors(users.add));
+  router.get('/', catchErrors(users.index));
+  router.post('/login', auth.createToken, catchErrors(users.add));
 
   router.get('/products', catchErrors(products.list));
-  router.post('/products', catchErrors(products.add));
-  router.put('/products/:id', catchErrors(products.update));
-  router.delete('/products/:id', catchErrors(products.delete));
+  router.post('/products', auth.checkToken, catchErrors(products.add));
+  router.put('/products/:id', auth.checkToken, catchErrors(products.update));
+  router.delete('/products/:id', auth.checkToken, catchErrors(products.delete));
 
-  router.get('/orders', catchErrors(orders.list));
-  router.post('/orders', catchErrors(orders.add));
-  router.put('/orders/:id', catchErrors(orders.update));
+  router.get('/orders', auth.checkToken, catchErrors(orders.list));
+  router.post('/orders', auth.checkToken, catchErrors(orders.add));
+  router.put('/orders/:id', auth.checkToken, catchErrors(orders.update));
 
 
   app.express.use(router);
