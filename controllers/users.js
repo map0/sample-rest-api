@@ -36,6 +36,12 @@ module.exports = app => {
             message: 'ooops. this record exists',
           })
         }
+        if (e instanceof Error && e.name && e.name === 'ValidationError') {
+          res.status(422);
+          return res.json({
+            message: `${e.name} ${e.message ? e.message : ''}`
+          })
+        }
         res.status(500);
         return res.json({
           message: 'smt went terribly wrong while storing the record'
