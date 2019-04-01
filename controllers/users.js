@@ -17,6 +17,7 @@ module.exports = app => {
       res.status(200);
       res.json({
         message: 'Welcome to this awesome-soon-to-be restapi',
+        testToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMiIsImNvdW50cnlDb2RlIjoiIiwiaWF0IjoxNTU0MTA1NzAzLCJleHAiOjE2NDA1MDU3MDN9.7ixSFVkc5uNamgWCcTTt54zoDr16mvNdHsOC5mUgk6g',
         routes: availableRoutes
       })
     },
