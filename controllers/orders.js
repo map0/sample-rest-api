@@ -5,7 +5,7 @@ module.exports = app => {
     async list(req, res) {
       const allOrders = await Order.list()
       res.status(200)
-      res.json(allOrders)
+      return res.json(allOrders)
     },
     async add(req, res) {
       // const newOrder = await Order.create(req.body)
@@ -18,7 +18,7 @@ module.exports = app => {
         });
       }
       res.status(400)
-      res.json({
+      return res.json({
         message: 'order cannot be created. so sorry!!'
       })
     },
@@ -33,7 +33,7 @@ module.exports = app => {
         }
       )
       res.status(205)
-      res.json({
+      return res.json({
         message: 'order updated'
       })
     }
