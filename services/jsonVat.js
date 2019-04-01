@@ -16,8 +16,8 @@ module.exports = app => {
           vat = countryTarget.periods[0].rates.standard // latest update
         })
         .catch(error => {
-          // TBD throw appropriate error
-          app.log(error);
+          app.log.error(error);
+          throw new Error('Not a valid country code')
         });
       return vat
     }
