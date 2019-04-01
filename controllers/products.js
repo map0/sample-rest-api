@@ -30,11 +30,6 @@ module.exports = app => {
       })
     },
     async update(req, res) {
-      // for (let prop in req.query) {
-      //   if (req.query[prop]) {
-      //     update[prop] = req.query[prop];
-      //   }
-      // }
       app.validator.isMongoId(req.params.id)
       await Product.update(req.params.id, req.body)
       res.status(205)

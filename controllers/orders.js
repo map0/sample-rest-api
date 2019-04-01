@@ -8,8 +8,6 @@ module.exports = app => {
       return res.json(allOrders)
     },
     async add(req, res) {
-      // const newOrder = await Order.create(req.body)
-      // await newOrder.save()
       const newOrder = await (new Order(req.body)).save()
       if (newOrder) {
         res.status(201)

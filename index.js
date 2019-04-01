@@ -8,7 +8,6 @@ const loader = require('lib/loader');
 const exceptions = require('exceptions');
 const routes = require('routes');
 const config = require('config/config');
-// const UserModel = require('models/user');
 const packageJson = require('package');
 
 require('dotenv').config({ path: 'variables.env' });
@@ -28,9 +27,6 @@ app.mongoose = mongoose(app)
 
 app.validator = validator(app)
 
-// app.models = {
-//   user: UserModel(app)
-// }
 app.models = loader(app, 'models');
 
 app.express = express(app);
