@@ -36,15 +36,7 @@ module.exports = app => {
       //   }
       // }
       app.validator.isMongoId(req.params.id)
-      await Product.findOneAndUpdate(
-        { _id: req.params.id },
-        req.body,
-        {
-          runValidators: true,
-          new: true,
-          upsert: true
-        }
-      )
+      await Product.update(req.params.id, req.body)
       res.status(205)
       return res.json({
         message: 'product updated'

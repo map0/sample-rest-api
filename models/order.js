@@ -42,5 +42,17 @@ module.exports = app => {
     )
   }
 
+  orderSchema.statics.update = async function update(id, payload) {
+    return this.findOneAndUpdate(
+      { _id: id },
+      payload,
+      {
+        runValidators: true,
+        new: true,
+        upsert: true
+      }
+    )
+  }
+
   return app.mongoose.model('Order', orderSchema);
 }

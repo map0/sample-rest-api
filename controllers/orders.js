@@ -23,15 +23,8 @@ module.exports = app => {
       })
     },
     async update(req, res) {
-      await Order.findOneAndUpdate(
-        { _id: req.params.id },
-        req.body,
-        {
-          runValidators: true,
-          new: true,
-          upsert: true
-        }
-      )
+      app.validator.isMongoId(req.params.id)
+      await Order.update(req.params.id, req.body)
       res.status(205)
       return res.json({
         message: 'order updated'
