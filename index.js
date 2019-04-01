@@ -1,7 +1,8 @@
 require('app-module-path').addPath(__dirname);
 
 const log = require('lib/log')
-const mongoose = require('lib/mongoose')
+const mongoose = require('lib/mongoose');
+const validator = require('lib/validator')
 const express = require('lib/express');
 const loader = require('lib/loader');
 const exceptions = require('exceptions');
@@ -24,6 +25,8 @@ app.config = config
 app.log = log(app);
 
 app.mongoose = mongoose(app)
+
+app.validator = validator(app)
 
 // app.models = {
 //   user: UserModel(app)

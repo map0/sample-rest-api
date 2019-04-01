@@ -33,11 +33,10 @@ module.exports = app => {
       // For the given username fetch user from DB
       const mockedUsername = 'admin';
       const mockedPassword = 'password';
-
       if (!username || !password) {
         return res.send(400).json({
           success: false,
-          message: 'Authentication failed! Please check the request'
+          message: 'Authentication failed! Something is missing'
         });
       }
       if (username === mockedUsername && password === mockedPassword) { // mock db.find
@@ -47,7 +46,7 @@ module.exports = app => {
             countryCode: req.body.countryCode || ''
           },
           process.env.JWT_SECRET,
-          { expiresIn: 86400 } // expires in 24 hours
+          { expiresIn: '1h' }
         );
         // return the JWT token for the future API calls
         res.token = token;
