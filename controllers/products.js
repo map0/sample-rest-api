@@ -35,9 +35,10 @@ module.exports = app => {
       //     update[prop] = req.query[prop];
       //   }
       // }
+      app.validator.isMongoId(req.params.id)
       await Product.findOneAndUpdate(
         { _id: req.params.id },
-        req.query,
+        req.body,
         {
           runValidators: true,
           new: true,

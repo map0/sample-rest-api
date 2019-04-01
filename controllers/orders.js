@@ -25,7 +25,7 @@ module.exports = app => {
     async update(req, res) {
       await Order.findOneAndUpdate(
         { _id: req.params.id },
-        req.query,
+        req.body,
         {
           runValidators: true,
           new: true,
